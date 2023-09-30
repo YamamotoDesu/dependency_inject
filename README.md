@@ -32,6 +32,7 @@ void setupLocator() {
 
 lib/main.dart
 ```dart
+void main() {
   setupLocator();
   runApp(const MyApp());
 }
