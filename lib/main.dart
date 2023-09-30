@@ -1,8 +1,10 @@
+import 'package:dependency_inject/injection_container.dart';
 import 'package:flutter/material.dart';
 
 import 'app_service.dart';
 
 void main() {
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -18,9 +20,9 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
-  final AppService _appService = AppService();
+  //final AppService _appService = AppService();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class HomePage extends StatelessWidget {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
               ),
               onPressed: () {
-                String currentDate = _appService.execute();
+                String currentDate = locator<AppService>().execute();
                 showSnackBar(currentDate, context);
               },
               child: const Text('Get Date'),
